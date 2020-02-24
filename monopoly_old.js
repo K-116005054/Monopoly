@@ -1,105 +1,49 @@
- var box1 = document.querySelector('#box1');
- var box2 = document.querySelector('#box2');
- var box3 = document.querySelector('#box3');
- var box4 = document.querySelector('#box4');
- var box5 = document.querySelector('#box5');
- var box6 = document.querySelector('#box6');
- var box7 = document.querySelector('#box7');
- var box8 = document.querySelector('#box8');
- var box9 = document.querySelector('#box9');
- var box10 = document.querySelector('#box10');
- var box11 = document.querySelector('#box11');
- var box12 = document.querySelector('#box12');
- var box13 = document.querySelector('#box13');
- var box14 = document.querySelector('#box14');
- var box15 = document.querySelector('#box15');
- var box16 = document.querySelector('#box16');
-
-var imageArray = [box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,box13,box14,box15,box16];
-const board = [];
-for(var i = 0; i<16;i++)
-{
-    board[i] = i*10;
-}
-const player1_button = document.getElementById("player-1");
-const player2_button = document.getElementById("player-2");
-console.log(player1_button);
-console.log(player2_button);
-
-player1_button.addEventListener('click',rolldice_1);
-//player1_button.addEventListener('click',myFunction);
-player2_button.addEventListener('click',rolldice_2);
-
-var player1 = ["A",0,1000];
-var player2 = ["B",0,1000];
-
-function rolldice_1()
-{
-    let position = Math.floor(Math.random()*6)+1;
-    console.log(position);
-    changePosition1(player1[1],position);
-}
-var count = 0;
-function changePosition1(old,newPos)
-{
-    count++;
-    if(count>1)
-    {
-        var elem=document.getElementById('img11');
-        elem.remove();
-    }
-    let updPos = old + newPos;
-    player1[1] = updPos;
-    if(updPos>board.length)
-    updPos %= 15;
-    console.log("Player1 - position", player1[1]);
-    let template = '<img src="assets/redcone.jfif" id="img11" alt="red" style="width: 36px;">';
-    //document.querySelector('#img1').style.display = "";
-    imageArray[updPos].innerHTML += template;
-    changeMoney1(player1[1]);
-}
-function changeMoney1(updPos)
-{
-    if(updPos<board.length)
-    player1[2] = player1[2] - board[updPos];
-    else
-    {
-    updPos %= 15;
-    player1[2] = player1[2] - board[updPos];
-    }
-    console.log("Player1 - amount",player1[2]);
-}
-function rolldice_2()
-{
-    let position = Math.floor(Math.random()*6)+1;
-    console.log(position);
-    changePosition2(player2[1],position);
-}
-function changePosition2(old,newPos)
-{
-    count++;
-    if(count>1)
-    {
-        var elem=document.getElementById('img12');
-        elem.remove();
-    }
-    let updPos = old + newPos;
-    player2[1] = updPos;
-    changeMoney1(player2[1]);
-    console.log("Player1 - position", player1[1]);
-    let template = '<img src="assets/yellowcone.jfif" id="img12" alt="red" style="width: 36px;">';
-    //document.querySelector('#img1').style.display = "";
-    imageArray[updPos].innerHTML += template;
-    console.log("Player2 - position", player2[1]);
-}
-function changeMoney2(updPos)
-{
-    if(updPos<board.length)
-    player2[2] = player2[2] - board[updPos];
-    else
-    {
-    updPos %= 15;
-    player2[2] = player2[2] - board[updPos];
-    }
-    console.log("Player2 - amount", player2[2]);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monopoly</title>
+    <!-- <script src="monopoly.js" type="module"></script> -->
+    <script src="generate.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="monopoly_old.js" type="module"></script>
+</head>
+<body>
+    <h1>MONOPOLY</h1>
+    <div>
+    <div id ="board">
+            <div class="box" id = "box1"><img src ="assets/redcone.jfif" id = "img1">0<img src="assets/yellowcone.jfif" id="img2"></div>
+            <div class="box" id = "box2">20</div>
+            <div class="box" id = "box3">30</div>
+            <div class="box" id = "box4">40</div>
+            <div class="box" id = "box5">50</div>
+            <div class="box" id = "box16">160</div>
+            <div class="box" style="visibility:hidden"></div>
+            <div class="box" style="visibility:hidden"></div>
+            <div class="box" style="visibility:hidden"></div>
+            <div class="box" id = "box6">60</div>
+            <div class="box" id = "box15">150</div>
+            <div class="box" style="visibility:hidden"></div>
+            <div class="box" style="visibility:hidden"></div>
+            <div class="box" style="visibility:hidden"></div>
+            <div class="box" id = "box7">70</div>
+            <div class="box" id = "box14">140</div>
+            <div class="box" style="visibility:hidden"></div>
+            <div class="box" style="visibility:hidden"></div>
+            <div class="box" style="visibility:hidden"></div>
+            <div class="box" id = "box8">80</div>
+            <div class="box" id = "box13">130</div>
+            <div class="box" id = "box12">120</div>
+            <div class="box" id = "box11">110</div>
+            <div class="box" id = "box10">100</div>
+            <div class="box" id = "box9">90</div>
+        </div>
+    </div>
+    <button id="player-1" onclick>Player - 1</button>
+    <button id="score1">money: 1000</button>
+    <button id="player-2" onclick>Player - 2</button>
+    <button id="score2">money: 1000</button>
+    </div>
+</body>
+</html>
